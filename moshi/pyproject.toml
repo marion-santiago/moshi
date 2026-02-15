@@ -1,19 +1,24 @@
 [project]
 name = "moshi"
-requires-python = ">= 3.10,<3.15"
+requires-python = ">=3.12,<3.13"
 description = "Moshi is moshi"
 dependencies = [
     "numpy >= 1.26, < 2.3",
     "safetensors >= 0.4.0, < 0.8.0",
     "huggingface-hub >= 0.24, < 1.0.0",
-    "bitsandbytes >= 0.45, < 0.50.0; sys_platform == 'linux'",
+    "bitsandbytes>=0.45,<0.50.0",
     "einops >= 0.7, < 0.9",
     "sentencepiece >= 0.2.0, < 0.3",
     "sounddevice == 0.5",
     "sphn >= 0.2.0, < 0.3.0",
-    "torch >= 2.2.0, < 2.10",
+    "torch>=2.2.0,<2.10",
     "aiohttp>=3.10.5, <3.12",
     "tqdm >= 4.48",
+    "rocm-sdk-core",
+    "rocm-sdk-devel",
+    "rocm-sdk-libraries-custom",
+    "rocm",
+    "triton-windows>=3.6.0.post25",
 ]
 authors = [{name="Laurent Mazaré", email="laurent@kyutai.org"}]
 maintainers = [{name="Laurent Mazaré", email="laurent@kyutai.org"}]
@@ -47,3 +52,11 @@ dev = [
 # (e.g. via "Format modified lines" in VSCode), you'll get these settings
 [tool.ruff]
 line-length = 120
+
+[tool.uv.sources]
+rocm-sdk-core = { url = "https://repo.radeon.com/rocm/windows/.rocm-rel-7.2_a/rocm_sdk_core-7.2.0.dev0-py3-none-win_amd64.whl" }
+rocm-sdk-devel = { url = "https://repo.radeon.com/rocm/windows/.rocm-rel-7.2_a/rocm_sdk_devel-7.2.0.dev0-py3-none-win_amd64.whl" }
+rocm-sdk-libraries-custom = { url = "https://repo.radeon.com/rocm/windows/.rocm-rel-7.2_a/rocm_sdk_libraries_custom-7.2.0.dev0-py3-none-win_amd64.whl" }
+rocm = { url = "https://repo.radeon.com/rocm/windows/.rocm-rel-7.2_a/rocm-7.2.0.dev0.tar.gz" }
+torch = { url = "https://repo.radeon.com/rocm/windows/.rocm-rel-7.2_a/torch-2.9.1+rocmsdk20260116-cp312-cp312-win_amd64.whl" }
+bitsandbytes = { url = "https://github.com/0xDELUXA/bitsandbytes_win_rocm/releases/download/v0.49.2.dev0-py312-rocm7.12-all/bitsandbytes-0.49.2.dev0-cp312-cp312-win_amd64.whl" }
